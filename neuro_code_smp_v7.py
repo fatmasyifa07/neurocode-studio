@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 st.set_page_config(
-    page_title="NeuroCode Studio - Platform Coding STEM & Socratic AI",
+    page_title="NeuroCode Studio - Platform Coding STEM & AI Tutor",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -40,7 +40,7 @@ if 'users_db' not in st.session_state:
                 }
             ],
             "chat_history": [
-                {"role": "bot", "text": "Halo Rizky! Saya NeuroBot, asisten koding kamu. Ada kendala dalam logika program atau ingin berdiskusi tentang algoritma STEM?"}
+                {"role": "bot", "text": "Halo Rizky! Saya NeuroBot, asisten koding dan sains STEM kamu. Ada pertanyaan tentang logika Python, tipe data, atau algoritma sensor IoT?"}
             ]
         },
         "siti": {
@@ -54,7 +54,7 @@ if 'users_db' not in st.session_state:
             "solved_missions": {"🚦 Lampu Lalu Lintas Adaptif"},
             "journals": [],
             "chat_history": [
-                {"role": "bot", "text": "Halo Siti! Selamat datang kembali di NeuroCode Studio!"}
+                {"role": "bot", "text": "Halo Siti! Selamat datang kembali di NeuroCode Studio! Siap eksplorasi koding hari ini?"}
             ]
         },
         "budi": {
@@ -78,7 +78,7 @@ if 'users_db' not in st.session_state:
             "password": "admin",
             "exp": 1000,
             "streak": 30,
-            "level": "Guru PRIMA Inovator",
+            "level": "Guru Pembina Informatika",
             "solved_missions": {"🌾 Irigasi Sawah Cerdas IoT", "🌋 Seismograf & EWS Tsunami", "🚦 Lampu Lalu Lintas Adaptif", "🥗 Kalkulator BMI & Nutrisi", "♻️ Pemilah Sampah Otomatis"},
             "journals": [],
             "chat_history": [
@@ -91,6 +91,221 @@ if 'active_user' not in st.session_state:
     st.session_state.active_user = "rizky"
 
 user_data = st.session_state.users_db[st.session_state.active_user]
+
+# ---------------------------------------------------------
+# SCIENTIFIC AI RESPONSE GENERATOR FUNCTION
+# ---------------------------------------------------------
+def get_scientific_ai_response(user_input):
+    query = user_input.lower().strip()
+    
+    # 1. Float vs Int vs Data Types
+    if "float" in query or "int" in query or "integer" in query or "tipe data" in query or "data type" in query or "variabel" in query or "variable" in query:
+        return """<b>📊 Penjelasan Ilmiah Variabel & Tipe Data Python:</b><br><br>
+Dalam ilmu komputer, <b>variabel</b> adalah lokasi penyimpanan di memori yang diberi nama untuk menampung nilai data.<br><br>
+<b>Tipe Data Utama dalam Python:</b>
+<ul>
+  <li><b><code>int</code> (Integer):</b> Menyimpan bilangan bulat utuh tanpa pecahan desimal. Digunakan untuk data diskrit/cacahan.<br>
+  <i>Contoh:</i> <code>jumlah_mobil = 28</code>, <code>botol_count = 10</code>.</li>
+  <li><b><code>float</code> (Floating-Point):</b> Menyimpan bilangan desimal/real dengan presisi tinggi. Digunakan untuk data fisik kontinu dari sensor.<br>
+  <i>Contoh:</i> <code>magnitudo = 7.2</code> (seismograf SR), <code>tinggi_m = 1.58</code>.</li>
+  <li><b><code>str</code> (String):</b> Kumpulan karakter/teks yang diapit tanda petik (<code>"..."</code> atau <code>'...'</code>).<br>
+  <i>Contoh:</i> <code>status = "STATUS: AMAN"</code>.</li>
+  <li><b><code>bool</code> (Boolean):</b> Nilai logika kebenaran, yaitu <code>True</code> (Benar) atau <code>False</code> (Salah).</li>
+  <li><b><code>list</code>:</b> Struktur data terurut untuk menyimpan banyak elemen sekaligus dalam kurung siku <code>[...]</code>.<br>
+  <i>Contoh:</i> <code>daftar_sampah = ["Botol Plastik", "Sisa Apel", "Kaleng Bekas"]</code>.</li>
+</ul>
+<br><b>💡 Contoh Kode Python:</b>
+<pre><code># Deklarasi variabel dengan tipe data berbeda
+tinggi_m = 1.58          # float
+berat_kg = 50            # int
+nama_siswa = "Rizky"     # string
+is_ideal = True          # boolean
+makanan = ["Sayur", "Buah"] # list</code></pre>"""
+
+    # 2. String, Print, and F-Strings
+    elif "string" in query or "str" in query or "print" in query or "f-string" in query or "f string" in query:
+        return """<b>🔤 Konsep Teks (String) & Formatting <code>print()</code> Python:</b><br><br>
+<b>1. String (<code>str</code>):</b> Tipe data teks yang diapit oleh tanda petik tunggal (<code>'...'</code>) atau ganda (<code>"..."</code>).<br>
+<b>2. Fungsi <code>print()</code>:</b> Perintah standar Python untuk menampilkan informasi ke terminal.<br>
+<b>3. F-String (Formatted String Literals):</b> Fitur modern Python (sejak Python 3.6) untuk menyisipkan nilai variabel atau ekspresi secara langsung ke dalam string dengan awalan huruf <code>f</code> dan tanda kurung kurawal <code>{variabel}</code>.<br><br>
+<b>💡 Contoh Kode Python:</b>
+<pre><code>nama = "Rizky"
+skor_bmi = 20.03
+
+# Menggunakan f-string
+print(f"Siswa bernama {nama} memiliki skor BMI {skor_bmi}")
+# Output terminal: Siswa bernama Rizky memiliki skor BMI 20.03</code></pre>"""
+
+    # 3. Conditionals & Logic (If, Elif, Else, Operator)
+    elif any(k in query for k in ["if", "elif", "else", "percabangan", "kondisi", "kondisional", "logika"]):
+        return """<b>🔀 Cara Kerja Percabangan Logika (<code>if - elif - else</code>):</b><br><br>
+Percabangan logika memungkinkan program mengambil keputusan berdasarkan evaluasi kondisi boolean (<code>True</code> atau <code>False</code>):<br>
+<ul>
+  <li><b><code>if</code> (Jika):</b> Mengecek kondisi pertama. Jika bernilai <code>True</code>, blok kode di bawahnya dieksekusi dan percabangan selesai.</li>
+  <li><b><code>elif</code> (Else If):</b> Mengecek kondisi alternatif hanya jika kondisi <code>if</code> di atasnya bernilai <code>False</code>.</li>
+  <li><b><code>else</code> (Lainnya):</b> Dieksekusi secara otomatis jika seluruh kondisi <code>if</code> dan <code>elif</code> di atasnya bernilai <code>False</code>.</li>
+</ul>
+<br><b>⚖️ Operator Perbandingan & Logika:</b>
+<ul>
+  <li><code>==</code> (sama dengan), <code>!=</code> (tidak sama dengan), <code>&lt;</code> (kurang dari), <code>&gt;</code> (lebih dari), <code>&lt;=</code>, <code>&gt;=</code>.</li>
+  <li><code>and</code> (kedua kondisi harus True), <code>or</code> (salah satu True), <code>not</code> (membalikkan nilai kebenaran).</li>
+</ul>
+<br><b>💡 Contoh Kode Python:</b>
+<pre><code>kelembapan = 25
+
+if kelembapan < 30:
+    print("STATUS: TANAH KERING -> POMPA ON")
+elif kelembapan <= 70:
+    print("STATUS: KONDISI OPTIMAL")
+else:
+    print("STATUS: TANAH BASAH -> DRAINASE OPEN")</code></pre>"""
+
+    # 4. Difference between = and ==
+    elif "=" in query or "sama dengan" in query or "bedanya = dan ==" in query or "beda =" in query:
+        return """<b>⚠️ Perbedaan Krusial Antara Operator <code>=</code> dan <code>==</code>:</b><br><br>
+<ul>
+  <li><b>Operator <code>=</code> (Assignment / Penugasan):</b> Digunakan untuk **memasukkan nilai** ke dalam variabel.<br>
+  <i>Contoh:</i> <code>sensor = 25</code> menyimpan angka 25 ke variabel <code>sensor</code>.</li>
+  <li><b>Operator <code>==</code> (Comparison / Perbandingan):</b> Digunakan untuk **memeriksa apakah dua nilai bernilai sama**. Hasilnya bernilai <code>True</code> atau <code>False</code>.<br>
+  <i>Contoh:</i> <code>if status == "SANGAT PADAT":</code> memeriksa apakah nilai variabel <code>status</code> sama dengan string <code>"SANGAT PADAT"</code>.</li>
+</ul>
+<br><b>💡 Contoh Kode Python:</b>
+<pre><code># Penugasan variabel
+jumlah_mobil = 28
+
+# Perbandingan dalam percabangan
+if jumlah_mobil == 28:
+    print("Jumlah mobil terdeteksi tepat 28 unit")</code></pre>"""
+
+    # 5. Loops (for, while, range, perulangan, iterasi)
+    elif any(k in query for k in ["loop", "for", "while", "ulang", "perulangan", "iterasi", "range"]):
+        return """<b>🔄 Cara Kerja Perulangan (<code>for</code> & <code>while</code>) dalam Python:</b><br><br>
+Perulangan (loop) digunakan untuk mengeksekusi blok kode berulang kali secara otomatis tanpa duplikasi kode.<br><br>
+<b>1. Perulangan <code>for loop</code> dengan <code>range()</code>:</b><br>
+Fungsi <code>range(start, stop)</code> menghasilkan urutan angka dari <code>start</code> hingga <code>stop - 1</code>.<br>
+<i>Contoh:</i>
+<pre><code># Mengulang bunyi sirine 3 kali (i = 1, 2, 3)
+for i in range(1, 4):
+    print(f"SIRINE KE-{i}: BEEP! BEEP!")</code></pre>
+<br><b>2. Perulangan Elemen List:</b>
+<pre><code>daftar_sampah = ["Botol Plastik", "Sisa Apel", "Kaleng Bekas"]
+for item in daftar_sampah:
+    print(f"Memilah: {item}")</code></pre>"""
+
+    # 6. Errors & Debugging (SyntaxError, IndentationError, NameError, TypeError, ValueError, ZeroDivisionError, IndexError)
+    elif any(k in query for k in ["error", "salah", "bug", "syntaxerror", "indentationerror", "nameerror", "typeerror", "valueerror", "indexerror"]):
+        return """<b>🛠️ Panduan Diagnosa & Solusi Error Pemrograman Python:</b><br><br>
+Berikut adalah jenis kesalahan (*error*) yang umum ditemui beserta penyebab dan solusinya berdasarkan dokumentasi resmi Python:<br><br>
+<b>1. <code>SyntaxError</code> (Kesalahan Tata Bahasa):</b>
+<ul>
+  <li><b>Penyebab:</b> Lupa menuliskan tanda titik dua (<code>:</code>) di akhir baris <code>if</code>/<code>elif</code>/<code>else</code>/<code>for</code>, atau tanda petik string yang tidak tertutup.</li>
+  <li><b>Solusi:</b> Periksa baris yang ditunjuk dan pastikan ada tanda titik dua <code>:</code> di akhir pernyataan kontrol.</li>
+</ul>
+<b>2. <code>IndentationError</code> (Kesalahan Spasi/Indentasi):</b>
+<ul>
+  <li><b>Penyebab:</b> Baris perintah di dalam blok <code>if</code> atau <code>for</code> tidak menjorok ke dalam secara konsisten.</li>
+  <li><b>Solusi:</b> Gunakan 4 spasi (atau 1 tombol Tab) di bawah pernyataan <code>if</code>/<code>for</code>.</li>
+</ul>
+<b>3. <code>NameError</code> (Nama Variabel Tidak Ditemukan):</b>
+<ul>
+  <li><b>Penyebab:</b> Memanggil nama variabel yang belum pernah dideklarasikan atau salah mengetik huruf besar-kecil (Python bersifat <i>case-sensitive</i>).</li>
+  <li><b>Solusi:</b> Pastikan nama variabel yang dipanggil sama persis dengan saat diinisialisasi.</li>
+</ul>
+<b>4. <code>TypeError</code> (Mismatched Types):</b>
+<ul>
+  <li><b>Penyebab:</b> Melakukan operasi matematika antara String dan Integer, seperti <code>"5" + 10</code>.</li>
+  <li><b>Solusi:</b> Konversikan tipe data terlebih dahulu menggunakan <code>int("5")</code> atau gunakan f-string.</li>
+</ul>"""
+
+    # 7. STEM Science: Irigasi & Kelembapan Tanah (IoT)
+    elif any(k in query for k in ["irigasi", "kelembapan", "sawah", "tanah", "pompa"]):
+        return """<b>🌾 Dasar Sains & Algoritma Irigasi Sawah Cerdas IoT:</b><br><br>
+<b>1. Prinsip Fisika Sensor Kelembapan Tanah:</b><br>
+Sensor mengukur kapasitas dielektrik tanah untuk menentukan kadar air dalam satuan persen (0% - 100%).<br><br>
+<b>2. Ambang Batas Logika Algoritma:</b>
+<ul>
+  <li><b>Kelembapan &lt; 30%:</b> Tanah kering (defisit air). Sistem mengirim sinyal ke relay untuk menyalakan <code>POMPA AIR: ON</code>.</li>
+  <li><b>Kelembapan 30% - 70%:</b> Kondisi air tanah optimal untuk pertumbuhan tanaman padi. Status sistem <code>STANDBY</code>.</li>
+  <li><b>Kelembapan &gt; 70%:</b> Kejenuhan air/kebanjiran. Pompa dimatikan dan pintu <code>DRAINASE</code> dibuka untuk mencegah kerusakan akar.</li>
+</ul>
+<br><b>💡 Algoritma Python:</b>
+<pre><code>if sensor_kelembapan < 30:
+    print("STATUS: TANAH KERING -> POMPA ON")
+elif sensor_kelembapan <= 70:
+    print("STATUS: KONDISI OPTIMAL -> STANDBY")
+else:
+    print("STATUS: TANAH BASAH -> DRAINASE OPEN")</code></pre>"""
+
+    # 8. STEM Science: Seismograf, Gempa & Tsunami
+    elif any(k in query for k in ["gempa", "seismograf", "tsunami", "ews", "magnitudo", "richters"]):
+        return """<b>🌋 Dasar Geofisika EWS Gempa Bumi & Tsunami (Skala Richter):</b><br><br>
+<b>1. Pengukuran Magnitudo Seismograf:</b><br>
+Skala Richter (SR) mengukur amplitudo logaritmik gelombang seismik dari pusat gempa (hiposentrum).<br><br>
+<b>2. Ambang Batas Risiko & Sistem EWS:</b>
+<ul>
+  <li><b>Magnitudo &lt; 5.0 SR:</b> Gempa ringan (risiko kerusakan sangat rendah).</li>
+  <li><b>5.0 &le; Magnitudo &lt; 7.0 SR:</b> Gempa sedang (dapat merusak konstruksi bangunan, status WASPADA).</li>
+  <li><b>Magnitudo &ge; 7.0 SR:</b> Gempa skala besar. Jika terjadi di dasar laut dangkal, berpotensi memicu gelombang Tsunami. EWS mengaktifkan perulangan sirine keselamatan kota secara berkala.</li>
+</ul>
+<br><b>💡 Algoritma EWS Python:</b>
+<pre><code>if magnitudo >= 7.0:
+    print("🚨 STATUS: BAHAYA TSUNAMI! 🚨")
+    for i in range(1, 4):
+        print(f"SIRINE KOTA KE-{i}: BEEP! BEEP!")</code></pre>"""
+
+    # 9. STEM Science: BMI & Nutrisi WHO
+    elif any(k in query for k in ["bmi", "gizi", "nutrisi", "berat", "tinggi", "kesehatan"]):
+        return """<b>🥗 Formula Matematika Indeks Massa Tubuh (BMI) Standar WHO:</b><br><br>
+<b>1. Rumus BMI:</b><br>
+$$\text{BMI} = \frac{\text{Berat Badan (kg)}}{\text{Tinggi Badan (m)}^2}$$
+<i>Catatan:</i> Tinggi badan dalam sentimeter harus dikonversi terlebih dahulu ke meter (dibagi 100).<br><br>
+<b>2. Evaluasi Kategori Kesehatan:</b>
+<ul>
+  <li><b>BMI &lt; 18.5:</b> Kurang Berat Badan (Underweight) &rarr; Perlu asupan kalori dan protein tambahan.</li>
+  <li><b>18.5 &le; BMI &le; 25.0:</b> Berat Badan Ideal & Sehat &rarr; Pertahankan pola makan gizi seimbang.</li>
+  <li><b>BMI &gt; 25.0:</b> Kelebihan Berat Badan (Overweight) &rarr; Tingkatkan aktivitas fisik & kurangi gula.</li>
+</ul>
+<br><b>💡 Kode Perhitungan Python:</b>
+<pre><code>berat_kg = 50
+tinggi_m = 1.58
+
+bmi = berat_kg / (tinggi_m ** 2)
+print(f"Skor BMI Anda: {round(bmi, 2)}")</code></pre>"""
+
+    # 10. Computational Thinking 4 Pillars
+    elif any(k in query for k in ["computational thinking", "ct", "dekomposisi", "abstraksi", "pola", "algoritma"]):
+        return """<b>🧠 4 Pilar Utama Computational Thinking (Pemikiran Komputasional):</b><br><br>
+Computational Thinking adalah metode pemecahan masalah secara terstruktur yang kompatibel dengan pemrosesan komputer:<br><br>
+<b>1. Dekomposisi (Decomposition):</b> Memecah masalah kompleks menjadi komponen-komponen kecil yang lebih mudah dikelola.<br>
+<i>Contoh:</i> Membagi sistem irigasi menjadi komponen sensor, logika perbandingan, dan aktuator pompa.<br><br>
+<b>2. Pengenalan Pola (Pattern Recognition):</b> Mengidentifikasi kesamaan atau tren berulang pada data.<br>
+<i>Contoh:</i> Menghubungkan lonjakan magnitudo gempa di atas 7.0 SR dengan potensi bahaya Tsunami.<br><br>
+<b>3. Abstraksi (Abstraction):</b> Berfokus pada informasi penting dan mengabaikan detail yang tidak relevan.<br>
+<i>Contoh:</i> Menggunakan angka persentase kelembapan <code>25%</code> tanpa memedulikan variabel warna tanah.<br><br>
+<b>4. Algoritma (Algorithm):</b> Menyusun langkah-langkah instruksi sistematis secara berurutan.<br>
+<i>Contoh:</i> Menuliskan rangkaian instruksi <code>if-elif-else</code> pada Python."""
+
+    # 11. General Direct Answer Fallback (Comprehensive & Scientific)
+    else:
+        return f"""<b>💡 Penjelasan Ilmiah & Konsep Komputasi:</b><br><br>
+Mengenai topik <b>"{user_input}"</b>, dalam ilmu komputer dan sains data, berikut adalah penjelasan langsungnya:<br><br>
+<b>1. Prinsip Logika Pemrosesan:</b><br>
+Sistem komputasi mengolah data melalui siklus <b>Input &rarr; Proses (Algoritma) &rarr; Output</b>. Setiap data masukan ditampung dalam variabel, diperiksa menggunakan operator logika, dan menghasilkan aksi sistem yang sesuai.<br><br>
+<b>2. Penerapan dalam Python:</b>
+<ul>
+  <li><b>Inisialisasi Data:</b> Mengatur variabel dan tipe data yang sesuai (seperti <code>int</code>, <code>float</code>, atau <code>str</code>).</li>
+  <li><b>Evaluasi Kondisi:</b> Memeriksa batasan nilai menggunakan struktur percabangan <code>if-elif-else</code>.</li>
+  <li><b>Eksekusi Instruksi:</b> Menampilkan hasil atau mengontrol perangkat fisik dengan fungsi seperti <code>print()</code>.</li>
+</ul>
+<br><b>💡 Contoh Implementasi Kode Python:</b>
+<pre><code># Contoh struktur penanganan data
+topik_diskusi = "{user_input}"
+
+if topik_diskusi:
+    print(f"Topik '{{topik_diskusi}}' berhasil diproses secara otomatis oleh sistem.")
+else:
+    print("Sistem dalam kondisi Standby.")</code></pre>
+<br><i>Gunakan menu pertanyaan atau ketik kata kunci spesifik seperti 'if else', 'float', 'error', 'bmi', atau 'seismograf' untuk eksplorasi lebih detil!</i>"""
 
 # ---------------------------------------------------------
 # STYLING: BRIGHT, FULL COLOR, EYE-CATCHING UI
@@ -164,14 +379,6 @@ st.markdown("""
     .bright-card:hover {
         transform: translateY(-2px);
         box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.12);
-    }
-    
-    .card-gradient-header {
-        background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-        color: white;
-        padding: 1.2rem;
-        border-radius: 16px;
-        margin-bottom: 1rem;
     }
     
     /* Colorful Chat Bubbles */
@@ -269,7 +476,7 @@ with st.sidebar:
                         "solved_missions": set(),
                         "journals": [],
                         "chat_history": [
-                            {"role": "bot", "text": f"Selamat datang {new_name}! Saya NeuroBot, asisten koding kamu. Mari mulai eksplorasi STEM!"}
+                            {"role": "bot", "text": f"Selamat datang {new_name}! Saya NeuroBot, asisten koding dan sains STEM kamu. Mari mulai eksplorasi koding!"}
                         ]
                     }
                     st.session_state.active_user = clean_u
@@ -280,7 +487,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("### 🎛️ Pengaturan Kelas")
-    st.caption("Platform Pembelajaran Coding STEM & Socratic AI - Terintegrasi Kurikulum Merdeka SMP")
+    st.caption("Platform Pembelajaran Coding STEM & Scientific AI - Terintegrasi Kurikulum Merdeka SMP")
 
 # Re-fetch user data after potential account switch
 user_data = st.session_state.users_db[st.session_state.active_user]
@@ -293,9 +500,9 @@ st.markdown(f"""
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
             <div style="background: rgba(255,255,255,0.25); padding: 4px 14px; border-radius: 20px; display: inline-block; font-size: 0.85rem; font-weight: 800; margin-bottom: 8px;">
-                ⚡ NEUROCODE STUDIO v8 - FULL INTERACTIVE
+                ⚡ NEUROCODE STUDIO - FULL INTERACTIVE
             </div>
-            <h1 class="hero-title">🚀 Platform Simulator Coding STEM & Socratic AI</h1>
+            <h1 class="hero-title">🚀 Platform Simulator Coding STEM & AI Learning Tutor</h1>
             <p class="hero-subtitle">Meningkatkan Computational Thinking & Deep Learning Siswa SMP</p>
         </div>
         <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
@@ -312,7 +519,7 @@ st.markdown(f"""
 tab_home, tab_lab, tab_bot, tab_progress = st.tabs([
     "🏠 Beranda & Papan Peringkat", 
     "🧪 Lab STEM & Coding", 
-    "🤖 NeuroBot AI Sokratik", 
+    "🤖 NeuroBot AI Learning Tutor", 
     "📈 Progres & Jurnal Refleksi"
 ])
 
@@ -552,7 +759,7 @@ with tab_lab:
         with col_btn1:
             btn_run = st.button("▶️ JALANKAN PROGRAM", use_container_width=True, type="primary")
         with col_btn2:
-            btn_soc = st.button("🤖 MINTA BIMBINGAN AI", use_container_width=True)
+            btn_soc = st.button("🤖 KONSULTASI ILMIAH AI", use_container_width=True)
 
     # Execution Engine
     out_buf = io.StringIO()
@@ -579,7 +786,7 @@ with tab_lab:
         st.markdown("<b>🖥️ Output Terminal Execution:</b>", unsafe_allow_html=True)
         st.markdown("""<div style="background: #0f172a; color: #38bdf8; padding: 1rem; border-radius: 14px; border: 2px solid #1e293b; font-family: 'Fira Code', monospace;">""", unsafe_allow_html=True)
         if err_msg:
-            st.error(f"⚠️ Error Terdeteksi:\n{err_msg}")
+            st.error(f"⚠️ Error Terdeteksi: {err_msg}")
         elif exec_out:
             st.code(exec_out, language="text")
         else:
@@ -615,50 +822,58 @@ with tab_lab:
             
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # Socratic Mentor Popup / Modal response
+    # Scientific AI Mentor Response
     if btn_soc or err_msg:
         st.markdown("---")
         st.markdown("""
         <div style="background: linear-gradient(135deg, #e0e7ff, #f3e8ff); border: 2px solid #6366f1; border-radius: 20px; padding: 1.25rem;">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                 <span style="font-size: 1.8rem;">🤖</span>
-                <b style="color: #4f46e5; font-size: 1.1rem;">NeuroBot AI Socratic Mentor:</b>
+                <b style="color: #4f46e5; font-size: 1.1rem;">NeuroBot AI Scientific Analysis:</b>
             </div>
         """, unsafe_allow_html=True)
         
         if err_msg:
-            st.write("🧐 **Mari Analisis Kesalahan Kode Tersebut Bersama-Sama:**")
-            st.write(f"Pesan error: `{err_msg}`.")
-            st.write("**Pertanyaan Refleksi Debugging:** Apakah kamu lupa menuliskan tanda titik dua (`:`) di akhir baris `if`/`elif`, atau ada spasi indentasi yang belum sejajar?")
+            err_response = get_scientific_ai_response(f"error {err_msg}")
+            st.markdown(f"<b>🔍 Analisis Ilmiah Kesalahan Kode:</b><br>{err_response}", unsafe_allow_html=True)
         else:
-            st.write(f"💡 **Pertanyaan Refleksi Computational Thinking ({selected_miss_name}):**")
-            st.write(f"Nilai input sensor saat ini adalah **{slider_input} {miss['unit']}**. *Coba perhatikan baris pengkondisian `if-elif-else` mana yang terpilih? Apa yang terjadi jika nilai sensor dinaikkan ke batas maksimal?*")
+            mission_expl = get_scientific_ai_response(f"{selected_miss_name} {miss['param']}")
+            st.markdown(f"<b>💡 Analisis Logika & Sains Sensor ({selected_miss_name}):</b><br>Nilai sensor terdeteksi saat ini: <b>{slider_input} {miss['unit']}</b>.<br><br>{mission_expl}", unsafe_allow_html=True)
             
         st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# TAB 3: NEUROBOT AI SOKRATIK
+# TAB 3: NEUROBOT AI LEARNING TUTOR
 # ---------------------------------------------------------
 with tab_bot:
-    st.subheader("🤖 NeuroBot AI - Asisten Koding Sokratik")
-    st.caption("NeuroBot membantu kamu menganalisis kesalahan kode dan memahami logika tanpa membocorkan jawaban langsung.")
+    st.subheader("🤖 NeuroBot AI - Asisten Pembelajaran Koding & Sains")
+    st.caption("NeuroBot memberikan penjelasan ilmiah langsung, mendiagnosis error koding, dan menjelaskan konsep Python secara mendalam.")
     
-    # Quick Prompt Buttons
-    q_col1, q_col2, q_col3 = st.columns(3)
+    # Quick Topic Buttons
+    q_col1, q_col2, q_col3, q_col4 = st.columns(4)
     with q_col1:
-        if st.button("💡 Kenapa Kode Saya Error?", use_container_width=True):
-            user_data['chat_history'].append({"role": "user", "text": "NeuroBot, kenapa kode saya bisa error saat dijalankan?"})
-            user_data['chat_history'].append({"role": "bot", "text": "Mari kita cek 3 penyebab umum error pada Python:\n1. **SyntaxError:** Apakah ada tanda kurung `()` atau titik dua `:` yang hilang?\n2. **IndentationError:** Apakah baris di dalam blok `if` sudah menjorok ke dalam (4 spasi)?\n3. **NameError:** Apakah nama variabel yang kamu panggil sudah persis sama huruf besar-kecilnya?"})
+        if st.button("💡 Solusi Error Koding", use_container_width=True):
+            ans = get_scientific_ai_response("error syntaxerror indentationerror nameerror typeerror")
+            user_data['chat_history'].append({"role": "user", "text": "NeuroBot, apa saja jenis error paling sering di Python dan bagaimana solusinya?"})
+            user_data['chat_history'].append({"role": "bot", "text": ans})
             st.rerun()
     with q_col2:
-        if st.button("🔍 Cara Kerja Logika If-Else", use_container_width=True):
-            user_data['chat_history'].append({"role": "user", "text": "Bagaimana cara kerja logika If-Else dalam percabangan?"})
-            user_data['chat_history'].append({"role": "bot", "text": "Bayangkan logika `If-Else` seperti lampu lalu lintas:\n- `if` mencek kondisi pertama (misal: Apakah Kelembapan < 30%).\n- Jika **Benar**, komputer mengeksekusi perintah di bawahnya dan mengabaikan baris lain!\n- Jika **Salah**, komputer lanjut mengecek `elif` atau masuk ke `else`."})
+        if st.button("🔍 Logika Percabangan If-Else", use_container_width=True):
+            ans = get_scientific_ai_response("if elif else percabangan kondisi operator")
+            user_data['chat_history'].append({"role": "user", "text": "Bagaimana cara kerja logika If-Elif-Else dan operator perbandingan dalam Python?"})
+            user_data['chat_history'].append({"role": "bot", "text": ans})
             st.rerun()
     with q_col3:
-        if st.button("🚀 Minta Tantangan HOTS", use_container_width=True):
-            user_data['chat_history'].append({"role": "user", "text": "NeuroBot, beri saya tantangan penalaran koding tingkat tinggi (HOTS)!"})
-            user_data['chat_history'].append({"role": "bot", "text": "🔥 **Tantangan HOTS:** Bisakah kamu mengubah kode Misi Irigasi Sawah agar memiliki kondisi tambahan: Jika kelembapan antara 40% dan 60%, nyalakan pompa selama 5 detik saja? *Operasi logika apa (`and` / `or`) yang kamu butuhkan?*"})
+        if st.button("📊 Variabel & Tipe Data", use_container_width=True):
+            ans = get_scientific_ai_response("float int integer variabel data type string bool list")
+            user_data['chat_history'].append({"role": "user", "text": "Jelaskan konsep variabel dan tipe data (int, float, string, list) dalam Python!"})
+            user_data['chat_history'].append({"role": "bot", "text": ans})
+            st.rerun()
+    with q_col4:
+        if st.button("🌊 Sains Sensor & STEM", use_container_width=True):
+            ans = get_scientific_ai_response("irigasi gempa seismograf bmi traffic lalu lintas")
+            user_data['chat_history'].append({"role": "user", "text": "Jelaskan dasar ilmiah dan rumus matematika dibalik simulasi sensor STEM!"})
+            user_data['chat_history'].append({"role": "bot", "text": ans})
             st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -674,23 +889,14 @@ with tab_bot:
     
     # Interactive Chat Input
     with st.form("chat_form", clear_on_submit=True):
-        user_text_input = st.text_input("Ketik pertanyaan atau kendala koding kamu di sini:", placeholder="Misal: NeuroBot, apa fungsi dari variabel float pada magnitudo gempa?")
+        user_text_input = st.text_input("Ketik pertanyaan koding atau sains kamu di sini:", placeholder="Misal: NeuroBot, apa bedanya operator = dan == di Python?")
         submit_chat = st.form_submit_button("Kirim Pertanyaan 🚀", type="primary")
         
         if submit_chat and user_text_input.strip():
             user_data['chat_history'].append({"role": "user", "text": user_text_input})
             
-            # Socratic AI Response Generator
-            low_text = user_text_input.lower()
-            if "error" in low_text or "salah" in low_text or "bug" in low_text:
-                bot_ans = "Mari lakukan *debugging* mandiri! Coba salin baris kode tempat pesan error itu terjadi. Apakah struktur spasi atau tanda baca di baris tersebut sudah benar?"
-            elif "loop" in low_text or "for" in low_text or "ulang" in low_text:
-                bot_ans = "Perulangan (`for loop`) digunakan untuk mengulang perintah yang sama secara otomatis! Dalam Misi EWS Gempa, perulangan dipakai untuk membunyikan sirine kota sebanyak 3 kali tanpa perlu mengetik print 3 kali."
-            elif "sensor" in low_text or "iot" in low_text or "stem" in low_text:
-                bot_ans = "Di dunia nyata, sensor IoT membaca data fisik (seperti suhu atau kelembapan) menjadi angka digital. Angka inilah yang masuk ke variabel program Python kamu untuk diolah!"
-            else:
-                bot_ans = f"Pertanyaan yang bagus tentang '{user_text_input}'! Menurut analisis kamu, pilar Computational Thinking mana (Dekomposisi, Pengenalan Pola, Abstraksi, Algoritma) yang paling berperan dalam memecahkan masalah tersebut?"
-                
+            # Direct Scientific AI Response Generator
+            bot_ans = get_scientific_ai_response(user_text_input)
             user_data['chat_history'].append({"role": "bot", "text": bot_ans})
             st.rerun()
 
@@ -706,7 +912,7 @@ with tab_progress:
         st.markdown("""
         <div class="bright-card" style="border-top: 5px solid #10b981;">
             <h3 style="margin-top:0; color: #059669;">📝 Tambah Catatan Refleksi Baru</h3>
-            <p style="font-size: 0.85rem; color: #64748b;">Refleksi 3 Tahap (Mindful, Meaningful, & Joyful Learning):</p>
+            <p style="font-size: 0.85rem; color: #64748b;">Refleksi Pembelajaran Mendalam (Mindful, Meaningful, & Joyful Learning):</p>
         """, unsafe_allow_html=True)
         
         with st.form("form_jurnal_v8"):
@@ -755,7 +961,7 @@ with tab_progress:
             st.markdown("""
             <div style="background: #f8fafc; border: 2px solid #10b981; border-radius: 14px; padding: 0.8rem; text-align: center;">
                 <span style="font-size: 2rem;">🤖</span><br>
-                <b style="color: #0f172a;">Socratic Thinker</b><br>
+                <b style="color: #0f172a;">Scientific Coder</b><br>
                 <small style="color: #059669; font-weight: bold;">✅ Terbuka</small>
             </div>
             """, unsafe_allow_html=True)
@@ -770,7 +976,7 @@ with tab_progress:
             st.markdown("""
             <div style="background: #f8fafc; border: 2px solid #f59e0b; border-radius: 14px; padding: 0.8rem; text-align: center;">
                 <span style="font-size: 2rem;">👑</span><br>
-                <b style="color: #0f172a;">Guru PRIMA Hero</b><br>
+                <b style="color: #0f172a;">Master Coder Hero</b><br>
                 <small style="color: #d97706; font-weight: bold;">🏆 Level Top</small>
             </div>
             """, unsafe_allow_html=True)
@@ -815,7 +1021,7 @@ CATATAN JURNAL REFLEKSI:
 Total Jurnal Tersimpan: {len(user_data['journals'])} Catatan
 
 Diisukan oleh: NeuroCode Studio Platform
-Anugerah Guru PRIMA Jawa Timur 2026
+Interactive STEM & Computer Science Learning System
 =================================================="""
 
     st.download_button(
